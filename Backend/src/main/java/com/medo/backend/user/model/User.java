@@ -1,10 +1,7 @@
 package com.medo.backend.user.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user")
 public class User {
 
 
@@ -28,8 +26,10 @@ public class User {
     private String password;
     private String bio;
     private String avatarUrl;
+    @OneToMany(mappedBy = "user")
     private List<Competences> competences;
     private int reputation;
+    @OneToMany(mappedBy = "user")
     private  List<Badget> badgets;
     private String niveau;
 
