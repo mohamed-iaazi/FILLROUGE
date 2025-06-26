@@ -27,7 +27,7 @@ public class User {
     private String bio;
     private String avatarUrl;
     @OneToMany(mappedBy = "user")
-    private List<Competences> competences;
+    private List<Competence> competences;
     private int reputation;
     @OneToMany(mappedBy = "user")
     private  List<Badget> badgets;
