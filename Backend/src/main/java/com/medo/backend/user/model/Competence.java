@@ -4,6 +4,7 @@ package com.medo.backend.user.model;
 import jakarta.persistence.*;
 
 @Entity
+@
 public class Competence {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

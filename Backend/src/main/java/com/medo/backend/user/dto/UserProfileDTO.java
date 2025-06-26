@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 @Builder
 public class UserProfileDTO {
-
     private Long userId;
     private String name;
     private String email;
