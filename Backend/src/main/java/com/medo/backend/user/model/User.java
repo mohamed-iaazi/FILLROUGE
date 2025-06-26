@@ -5,10 +5,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
 
@@ -20,11 +28,9 @@ public class User {
     private String password;
     private String bio;
     private String avatarUrl;
-    private List<String> competences;
-    private List<Role> roles;
+    private List<Competences> competences;
     private int reputation;
     private  List<Badget> badgets;
     private String niveau;
-
 
 }
