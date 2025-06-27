@@ -13,5 +13,4 @@ public interface UserService {
     UserProfileDTO getUser(Long id);
 
 
-
 }
