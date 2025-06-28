@@ -1,7 +1,6 @@
-package com.medo.backend.user.model;
+package com.medo.backend.auth.dto;
 
-
-import jakarta.persistence.*;
+import com.medo.backend.user.model.Competence;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,27 +8,17 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
-public class User {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+public class CreateUserDTO {
     private String name;
     private String email;
     private String password;
     private String bio;
     private String avatarUrl;
-    @OneToMany(mappedBy = "user")
     private List<Competence> competences;
-    private int reputation;
-    @OneToMany(mappedBy = "user")
-    private  List<Badget> badgets;
-    private String niveau;
 
 }
