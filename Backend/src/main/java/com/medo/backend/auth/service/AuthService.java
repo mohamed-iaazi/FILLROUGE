@@ -1,11 +1,12 @@
 package com.medo.backend.auth.service;
 
+import com.medo.backend.auth.dto.AuthRequest;
 import com.medo.backend.auth.dto.AuthResponse;
 import com.medo.backend.auth.dto.CreateUserDTO;
-import com.medo.backend.user.dto.UserProfileDTO;
+import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
-    public AuthResponse createAccount(CreateUserDTO userDTO);
-    public AuthResponse login(String email, String password);
+    public ResponseEntity<AuthResponse> createAccount(CreateUserDTO userDTO);
+    public ResponseEntity<AuthResponse>  login(AuthRequest authRequest);
 
 }
