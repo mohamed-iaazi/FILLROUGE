@@ -1,11 +1,11 @@
 package com.medo.backend.auth.security;
 
 
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Parser;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -24,7 +24,6 @@ public class JwtService {
 
     // ganerateKeytoken
 
-
     public  String generateJwtToken(String username) {
 
         long now = System.currentTimeMillis();
@@ -38,21 +37,45 @@ public class JwtService {
 
 
 
+    private JwtParser parser(){
+
+        return Jwts.parser().verifyWith(key).build();
+    }
 
 
     //getusernamefromtoken
 
     public String getUsernameFromToken(String token) {
-        return null;
+
+        try {
+
+            Claims claims=parser().parseSignedClaims(token).getPayload();
+            return claims.getSubject();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
     //validite token
 
-    public  boolean validateJwtToken(String token) {
-        return true;
+    public  boolean validateJwtToken(String token, UserDetails userDetails) {
+
+        return token != null && userDetails.getUsername().equals(getUsernameFromToken(getUsernameFromToken(token))) && !isTokenExpired(token);
+
     }
 
+
+    public boolean isTokenExpired(String token) {
+        try {
+            Claims claims = parser().parseSignedClaims(token).getPayload();
+            return claims.getExpiration().before(new Date(System.currentTimeMillis()));
+        } catch (Exception e) {
+
+        }
+            return true; // Assume invalid or expired
+        }
 
     //claims next
 
