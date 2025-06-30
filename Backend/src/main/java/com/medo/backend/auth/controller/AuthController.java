@@ -7,7 +7,7 @@ import com.medo.backend.auth.dto.CreateUserDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("auth/")
 public class AuthController {
 
     @PostMapping("/login")
