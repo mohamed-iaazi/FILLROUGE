@@ -37,15 +37,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+    public boolean deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            //success fully deleted
+            return true;
+        } else {
+
+            return false;
+        }
+        }
 
     @Override
     public UserProfileDTO getUser(Long id) {
         UserProfileDTO userProfileDTO = new UserProfileDTO();
         return userProfileDTO.toUserProfileDTO(userRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id))
-);
+        );
     }
 }
