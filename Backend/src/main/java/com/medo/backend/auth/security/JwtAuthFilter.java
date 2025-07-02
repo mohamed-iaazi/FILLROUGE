@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.swing.text.html.parser.Parser;
@@ -37,26 +38,33 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+
+
         try {
-            String jwt = parseJwt(request);
 
-            String username =jwtService.getUsernameFromToken(jwt);
+                String jwt = parseJwt(request);
+            if (StringUtils.hasText(jwt)){
 
-            if (username != null && SecurityContextHolder.getContext().getAuthentication()==null) {
+                String username =jwtService.getUsernameFromToken(jwt);
 
-                UserDetails userDetails = userDetailService.loadUserByUsername(username);
+                if (username != null && SecurityContextHolder.getContext().getAuthentication()==null) {
 
-                if (userDetails != null && jwtService.validateJwtToken(jwt, userDetails)) {
+                    UserDetails userDetails = userDetailService.loadUserByUsername(username);
 
-                    UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-                    authenticationToken.setDetails(new WebAuthenticationDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                    if (userDetails != null && jwtService.validateJwtToken(jwt, userDetails)) {
 
+                        UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+                        authenticationToken.setDetails(new WebAuthenticationDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
+
+                    }
 
                 }
-
             }
             filterChain.doFilter(request, response);
+
+
 
 
 
@@ -68,14 +76,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     }
 
-    private  String parseJwt(HttpServletRequest request) {
-        String header=request.getHeader("Authorization");
-        String token=header.substring(7);
-
-        if (token.startsWith("Bearer ")) {
-            return  token;
+    private String parseJwt(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
         }
         return null;
-
     }
 }
