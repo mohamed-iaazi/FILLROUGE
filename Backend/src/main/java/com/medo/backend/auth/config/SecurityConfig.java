@@ -66,7 +66,7 @@ public class SecurityConfig {
 
      }
 
-    @Beancd
+    @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
