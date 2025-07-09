@@ -27,6 +27,4 @@ public class Comment {
     private Question question;
     @ManyToOne
     private Answer answer;
-    @OneToMany(mappedBy = "comment")
-    private List<Like> likes;
-} 
+}

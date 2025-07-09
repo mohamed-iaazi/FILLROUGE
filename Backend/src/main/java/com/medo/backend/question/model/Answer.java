@@ -27,6 +27,4 @@ public class Answer {
     private String content;
     private LocalDateTime createdAt;
     private boolean isBestAnswer;
-    @OneToMany(mappedBy = "answer")
-    private java.util.List<Vote> votes;
-} 
+}

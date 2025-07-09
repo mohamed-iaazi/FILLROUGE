@@ -28,9 +28,7 @@ public class QuestionServiceImpl implements QuestionService {
                 .description(questionDTO.getDescription())
                 .createdAt(questionDTO.getCreatedAt())
                 .author(questionDTO.getAuthor())
-                .tags(questionDTO.getTags())
                 .answers(questionDTO.getAnswers())
-                .votes(null)
                 .build();
         Question saved = questionRepository.save(question);
         return toDTO(saved);
@@ -43,7 +41,6 @@ public class QuestionServiceImpl implements QuestionService {
         Question question = optional.get();
         question.setTitle(questionDTO.getTitle());
         question.setDescription(questionDTO.getDescription());
-        question.setTags(questionDTO.getTags());
         Question updated = questionRepository.save(question);
         return toDTO(updated);
     }
@@ -75,9 +72,7 @@ public class QuestionServiceImpl implements QuestionService {
                 .description(question.getDescription())
                 .createdAt(question.getCreatedAt())
                 .author(question.getAuthor())
-                .tags(question.getTags())
                 .answers(question.getAnswers())
-                .voteCount(question.getVotes() != null ? question.getVotes().size() : 0)
                 .build();
     }
 } 

@@ -3,16 +3,28 @@ package com.medo.backend.user.controller;
 
 import com.medo.backend.user.dto.UserProfileDTO;
 import com.medo.backend.user.dto.UserUpdateDTO;
+import com.medo.backend.user.model.User;
 import com.medo.backend.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
 public class UserController  {
 
+    UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/updateProfile/{id}")
-    public UserUpdateDTO updateUser(@RequestBody  UserUpdateDTO userUpdateDTO ,@PathVariable Long id) {
-        return new UserUpdateDTO(2L,"test","hfh",null , null , null, null);
+    public UserProfileDTO updateUser(@RequestBody  UserUpdateDTO userUpdateDTO ,@PathVariable Long id) {
+      userService.updateUser(userUpdateDTO);
+
+
+        return null ;
     }
 
     @DeleteMapping("/delete/{id}")

@@ -85,7 +85,6 @@ public class CommentServiceImpl implements CommentService {
                 .author(comment.getAuthor())
                 .questionId(comment.getQuestion() != null ? comment.getQuestion().getId() : null)
                 .answerId(comment.getAnswer() != null ? comment.getAnswer().getId() : null)
-                .likeCount(comment.getLikes() != null ? comment.getLikes().size() : 0)
                 .build();
     }
 } 

@@ -25,15 +25,7 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
-    @ManyToMany
-    @JoinTable(
-        name = "question_tags",
-        joinColumns = @JoinColumn(name = "question_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    private List<Tag> tags;
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
-    @OneToMany(mappedBy = "question")
-    private List<Vote> votes;
+
 } 
