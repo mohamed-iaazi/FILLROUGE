@@ -4,6 +4,8 @@ import com.medo.backend.question.dto.QuestionDTO;
 import com.medo.backend.question.model.Question;
 import com.medo.backend.question.repository.QuestionRepository;
 import com.medo.backend.question.service.QuestionService;
+import com.medo.backend.user.service.UserService;
+import com.medo.backend.user.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +25,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionDTO createQuestion(QuestionDTO questionDTO) {
+        UserService service = null;
         Question question = Question.builder()
                 .title(questionDTO.getTitle())
                 .description(questionDTO.getDescription())
                 .createdAt(questionDTO.getCreatedAt())
-                .author(questionDTO.getAuthor())
-                .answers(questionDTO.getAnswers())
                 .build();
         Question saved = questionRepository.save(question);
         return toDTO(saved);
@@ -71,8 +72,6 @@ public class QuestionServiceImpl implements QuestionService {
                 .title(question.getTitle())
                 .description(question.getDescription())
                 .createdAt(question.getCreatedAt())
-                .author(question.getAuthor())
-                .answers(question.getAnswers())
                 .build();
     }
 } 

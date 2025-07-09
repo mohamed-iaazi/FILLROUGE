@@ -1,7 +1,6 @@
 package com.medo.backend.question.dto;
 
 import com.medo.backend.question.model.Answer;
-import com.medo.backend.question.model.Tag;
 import com.medo.backend.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +19,5 @@ public class QuestionDTO {
     private String title;
     private String description;
     private LocalDateTime createdAt;
-    private User author;
-    private List<Tag> tags;
-    private List<Answer> answers;
-    private int voteCount;
-} 
+    private AuthorDTO author;
+}

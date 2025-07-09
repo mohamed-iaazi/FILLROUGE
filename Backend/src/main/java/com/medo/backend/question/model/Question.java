@@ -22,10 +22,12 @@ public class Question {
     private String title;
     private String description;
     private LocalDateTime createdAt;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User author;
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
+    @ElementCollection
+    private List<String> tags;
 
 } 

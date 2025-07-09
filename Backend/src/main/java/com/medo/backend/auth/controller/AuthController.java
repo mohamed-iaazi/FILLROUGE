@@ -34,10 +34,7 @@ public class AuthController {
     @Operation(description = "Register api ")
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> createAccount(@RequestBody  CreateUserDTO createUserDTO) {
-
-
-        return ResponseEntity.ok(new AuthResponse(null, createUserDTO.getPassword(), createUserDTO.getName()));
-//        return authService.createAccount(createUserDTO);
+    return authService.createAccount(createUserDTO);
     }
 
 }
