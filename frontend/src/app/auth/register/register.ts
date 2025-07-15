@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule, FormArray} from '@angular/forms';
 import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -8,6 +8,17 @@ import {RouterLink} from '@angular/router';
 import {MatStep, MatStepper} from '@angular/material/stepper';
 import {MatIcon} from '@angular/material/icon';
 import {Auth} from '../../core/services/authservice/auth';
+import {MatChip, MatChipEditedEvent, MatChipInput, MatChipInputEvent} from '@angular/material/chips';
+
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {LiveAnnouncer} from '@angular/cdk/a11y';
+
+
+export interface Fruit{
+  name: string;
+}
 
 @Component({
   selector: 'app-register',
@@ -25,7 +36,9 @@ import {Auth} from '../../core/services/authservice/auth';
     MatStepper,
     MatStep,
     MatIcon,
-    MatIconButton,
+    MatChip,
+    MatChipsModule,
+    MatIconModule
   ],
   styleUrls: ['./register.css']
 })
@@ -100,7 +113,7 @@ export class RegisterComponent {
       ...this.registerForm.value.step1,
       ...this.registerForm.value.step2,
       ...this.registerForm.value.step3
-  
+
     };
     this.auth.register(formValue).subscribe({
       next: (res) => {
@@ -110,7 +123,7 @@ export class RegisterComponent {
           console.error('Register failed:', err);
         }
 
-      
+
       }) };
 
 
@@ -119,6 +132,8 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
     }
   }
+
+
 
 
 }

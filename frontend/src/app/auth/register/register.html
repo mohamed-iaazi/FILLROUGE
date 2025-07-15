@@ -50,32 +50,23 @@
       </form>
     </mat-step>
 
-    <mat-step [stepControl]="step3" label="Competences">
-      <form [formGroup]="step3">
-        <div formArrayName="competences">
-          <div *ngFor="let comp of competences.controls; let i = index" [formGroupName]="i" class="competence-group">
-            <mat-form-field appearance="outline" floatLabel="always" class="competence-input">
-              <mat-label>Competence Name</mat-label>
-              <input matInput formControlName="name" required />
-              <mat-error *ngIf="comp.get('name')?.hasError('required')">Name is required</mat-error>
-            </mat-form-field>
-            <button mat-icon-button color="warn" (click)="removeCompetence(i)" aria-label="Remove competence">
-              <mat-icon>remove_circle</mat-icon>
-            </button>
-          </div>
-        </div>
 
-        <button mat-stroked-button color="primary" (click)="addCompetence()" type="button">
-          Add Competence
-        </button>
+<mat-step [stepControl]="step3" label="Competences">
+  <form [formGroup]="step3">
 
-        <div class="actions">
-          <button mat-button (click)="prevStep()">Back</button>
-          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="registerForm.invalid">
-            Register
-          </button>
-        </div>
-      </form>
-    </mat-step>
+
+
+
+
+    <div class="actions">
+      <button mat-button (click)="prevStep()">Back</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="registerForm.invalid">
+        Register
+      </button>
+    </div>
+  </form>
+</mat-step>
+
+
   </mat-stepper>
 </div>
