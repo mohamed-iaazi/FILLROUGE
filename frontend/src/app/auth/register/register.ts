@@ -1,19 +1,14 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule, FormArray} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormArray} from '@angular/forms';
 import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {NgForOf, NgIf} from '@angular/common';
-import {MatButton, MatIconButton} from '@angular/material/button';
-import {RouterLink} from '@angular/router';
+import { NgIf} from '@angular/common';
+import {MatButton} from '@angular/material/button';
 import {MatStep, MatStepper} from '@angular/material/stepper';
-import {MatIcon} from '@angular/material/icon';
 import {Auth} from '../../core/services/authservice/auth';
-import {MatChip, MatChipEditedEvent, MatChipInput, MatChipInputEvent} from '@angular/material/chips';
-
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+
 
 
 export interface Fruit{
@@ -32,11 +27,9 @@ export interface Fruit{
     NgIf,
     MatInput,
     MatButton,
-    NgForOf,
     MatStepper,
     MatStep,
-    MatIcon,
-    MatChip,
+
     MatChipsModule,
     MatIconModule
   ],
