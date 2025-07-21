@@ -177,25 +177,23 @@
 
 
 
+/* Ask Container */
+.ask-container {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ask-container h1 {
+  font-size: 24px;
+  color: #242729;
+  margin-bottom: 24px;
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Similar Questions */
+/*  Questions */
 .similar-questions {
   background: white;
   border-radius: 8px;
@@ -237,7 +235,7 @@
   margin-top: 4px;
 }
 
-/* Stack Overflow-like question list styles */
+/* e question list  */
 .questions-list {
   display: flex;
   flex-direction: column;
@@ -335,9 +333,6 @@
   color: #b3bac2;
   font-size: 12px;
 }
-
-
-
 
 
 
