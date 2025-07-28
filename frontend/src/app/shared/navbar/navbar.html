@@ -1,1 +1,31 @@
-<p>navbar works!</p>
+
+<header [class.menu-expanded]="menuOpen">
+  <nav class="navbar">
+    <div class="first-side">
+      <i class="fas fa-bars menu-toggle" id="menuToggle" (click)="openMenu()"></i>
+      <a class="logo">Logo</a>
+      <div class="search-bar desktop-only">
+        <i class="fas fa-search"></i>
+        <label>
+          <input type="text" placeholder="Search..">
+        </label>
+      </div>
+      <ul [class.open]="menuOpen">
+        <li class="mobile-only search-bar">
+          <i class="fas fa-search"></i>
+          <label>
+            <input type="text" placeholder="Search..">
+          </label>
+        </li>
+        <li><i class="fas fa-award"></i><a>Badges</a></li>
+        <li><i class="fas fa-folder-open"></i><a>Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="profile">
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-envelope"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </nav>
+</header>

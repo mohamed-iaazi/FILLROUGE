@@ -20,27 +20,20 @@ public class UserController  {
         this.userService = userService;
     }
 
-    @PostMapping("/create")
-    public UserProfileDTO createUser(@RequestBody CreateUserDTO createUserDTO) {
-        return userService.createUser(createUserDTO);
-    }
-
     @PostMapping("/updateProfile/{id}")
     public UserProfileDTO updateUser(@RequestBody  UserUpdateDTO userUpdateDTO ,@PathVariable Long id) {
-        return userService.updateUser(userUpdateDTO).userToDto(
-            userService.getUser(id).toUserProfileDTO(
-                userService.getUser(id)
-            )
-        );
+      userService.updateUser(userUpdateDTO);
+        return null ;
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable  Long id) {
-        userService.deleteUser(id);
+        System.out.println(id);
     }
 
     @GetMapping("/display/{id}")
     public UserProfileDTO getUser(@PathVariable  Long id) {
-        return userService.getUser(id);
+        System.out.println(id);
+        return new UserProfileDTO(2L,"test","hfh",null , null , null, 1, null, null);
     }
 }

@@ -49,18 +49,4 @@ public class UserServiceImpl implements UserService {
                 orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id))
 );
     }
-
-    @Override
-    public UserProfileDTO createUser(CreateUserDTO createUserDTO) {
-        User user = User.builder()
-                .name(createUserDTO.getName())
-                .email(createUserDTO.getEmail())
-                .password(createUserDTO.getPassword())
-                .bio(createUserDTO.getBio())
-                .avatarUrl(createUserDTO.getAvatarUrl())
-                .competences(createUserDTO.getCompetences())
-                .build();
-        User saved = userRepository.save(user);
-        return new UserProfileDTO().toUserProfileDTO(saved);
-    }
 }

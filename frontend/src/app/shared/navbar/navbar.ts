@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.css'
 })
 export class Navbar {
+  menuOpen = false;
 
+  openMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 }
