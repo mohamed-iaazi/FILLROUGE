@@ -20,9 +20,16 @@ export class Auth {
   }
 
   public register(data : CreateUserDto) : Observable<any>  {
-
-    alert("Registering user with data: " + JSON.stringify(data));
     return this.httpClient.post(this.url+"/register", data);
 
+  }
+
+  saveToken(token: string,username : string)    {
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('username', username);
+  }
+
+  getToken() {
+    return localStorage.getItem('authToken');
   }
 }
