@@ -8,6 +8,7 @@ import {MatStep, MatStepper} from '@angular/material/stepper';
 import {Auth} from '../../core/services/authservice/auth';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 
@@ -29,7 +30,6 @@ export interface Fruit{
     MatButton,
     MatStepper,
     MatStep,
-
     MatChipsModule,
     MatIconModule
   ],
@@ -40,7 +40,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   step = 0;
 
-  constructor(private fb: FormBuilder ,private  auth : Auth) {
+  constructor(private fb: FormBuilder ,private  auth : Auth,  private snackBar: MatSnackBar) {
     this.registerForm = this.fb.group({
       step1: this.fb.group({
         name: ['', Validators.required],
@@ -110,9 +110,32 @@ export class RegisterComponent {
     };
     this.auth.register(formValue).subscribe({
       next: (res) => {
+
+        const token = res.token;
+        const username = res.username;
+
+        if (token) {
+          this.auth.saveToken(token,username);
+          this.snackBar.open(res.message, "close", {
+
+            panelClass: ['success-snackbar'],
+            duration:2000
+          });
+          console.log('Token saved:', token ,"for user",username);
+        }
+
           console.log('Register success:', res);
+
         },
         error: (err) => {
+          this.snackBar.open("Register failed", "close", {
+            panelClass: ['error-snackbar'],
+            duration:2000
+
+
+
+
+          })
           console.error('Register failed:', err);
         }
 
