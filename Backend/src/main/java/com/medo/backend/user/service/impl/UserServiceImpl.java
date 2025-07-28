@@ -1,5 +1,6 @@
 package com.medo.backend.user.service.impl;
 
+import com.medo.backend.auth.dto.CreateUserDTO;
 import com.medo.backend.user.dto.UserProfileDTO;
 import com.medo.backend.user.dto.UserUpdateDTO;
 import com.medo.backend.user.model.User;
@@ -47,5 +48,19 @@ public class UserServiceImpl implements UserService {
         return userProfileDTO.toUserProfileDTO(userRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id))
 );
+    }
+
+    @Override
+    public UserProfileDTO createUser(CreateUserDTO createUserDTO) {
+        User user = User.builder()
+                .name(createUserDTO.getName())
+                .email(createUserDTO.getEmail())
+                .password(createUserDTO.getPassword())
+                .bio(createUserDTO.getBio())
+                .avatarUrl(createUserDTO.getAvatarUrl())
+                .competences(createUserDTO.getCompetences())
+                .build();
+        User saved = userRepository.save(user);
+        return new UserProfileDTO().toUserProfileDTO(saved);
     }
 }

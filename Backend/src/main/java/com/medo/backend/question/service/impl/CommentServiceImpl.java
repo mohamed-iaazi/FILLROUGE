@@ -77,6 +77,17 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CommentDTO updateComment(Long id, CommentDTO commentDTO) {
+        Optional<Comment> optional = commentRepository.findById(id);
+        if (optional.isEmpty()) return null;
+        Comment comment = optional.get();
+        comment.setContent(commentDTO.getContent());
+        // Optionally update author, question, answer if needed
+        Comment updated = commentRepository.save(comment);
+        return toDTO(updated);
+    }
+
     private CommentDTO toDTO(Comment comment) {
         return CommentDTO.builder()
                 .id(comment.getId())
