@@ -1,5 +1,6 @@
 package com.medo.backend.user.service.impl;
 
+import com.medo.backend.auth.dto.CreateUserDTO;
 import com.medo.backend.user.dto.UserProfileDTO;
 import com.medo.backend.user.dto.UserUpdateDTO;
 import com.medo.backend.user.model.User;
