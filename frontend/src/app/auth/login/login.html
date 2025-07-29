@@ -29,9 +29,15 @@
       <button mat-button type="button" class="forgot">Forgot password?</button>
     </div>
 
-    <button class="login" mat-raised-button color="primary"  type="submit" [disabled]="loginForm.invalid">
+    <button *ngIf="!isLoading" class="login" mat-raised-button color="primary"  type="submit" [disabled]="loginForm.invalid">
       Log In
     </button>
+    <mat-progress-bar
+      *ngIf="isLoading"
+      mode="buffer"
+      [value]="progressValue"
+      [bufferValue]="bufferValue">
+    </mat-progress-bar>
   </form>
 
   <div class="or"><span>Or</span></div>
@@ -48,7 +54,13 @@
 
   </div>
 
+
   <div class="footer-links">
-    <a mat-button routerLink="/login/sso">Create Account</a>
+    <a mat-button routerLink="/register">Create Account</a>
   </div>
+
 </div>
+
+
+
+
