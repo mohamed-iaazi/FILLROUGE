@@ -9,6 +9,7 @@ import {Auth} from '../../core/services/authservice/auth';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {RouterLink} from '@angular/router';
 
 
 
@@ -31,7 +32,8 @@ export interface Fruit{
     MatStepper,
     MatStep,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    RouterLink
   ],
   styleUrls: ['./register.css']
 })
