@@ -26,7 +26,7 @@
     </mat-form-field>
 
     <div class="form-footer">
-      <button mat-button type="button" class="forgot">Forgot password?</button>
+      <button  routerLink="/resetPassword" mat-button type="button" class="forgot">Forgot password?</button>
     </div>
 
     <button *ngIf="!isLoading" class="login" mat-raised-button color="primary"  type="submit" [disabled]="loginForm.invalid">

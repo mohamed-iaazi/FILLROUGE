@@ -7,7 +7,6 @@ import {NgIf} from '@angular/common';
   selector: 'app-navbar',
   imports: [
     RouterLink,
-    MatProgressBar,
     NgIf
   ],
   templateUrl: './navbar.html',
