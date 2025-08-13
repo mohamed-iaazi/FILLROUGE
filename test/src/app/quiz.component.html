@@ -1,0 +1,15 @@
+<div *ngIf="!showResult">
+  <h2>Question {{ currentIndex + 1 }} of {{ questions.length }}</h2>
+  <p>{{ questions[currentIndex].question }}</p>
+  <ul>
+    <li *ngFor="let option of questions[currentIndex].options; let i = index">
+      <button [class.selected]="selectedOption === i" (click)="selectOption(i)">{{ option }}</button>
+    </li>
+  </ul>
+  <button (click)="nextQuestion()" [disabled]="selectedOption === null">Next</button>
+</div>
+<div *ngIf="showResult">
+  <h2>Quiz Complete!</h2>
+  <p>Your score: {{ score }} / {{ questions.length }}</p>
+  <button (click)="restart()">Restart Quiz</button>
+</div>
